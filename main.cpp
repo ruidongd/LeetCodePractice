@@ -12,7 +12,7 @@ using namespcae std;
 class Solution {
 
 public:
-  // #1 Two Sum
+  // # 1 Two Sum
 
   // O(n), using hash table with for loop
   vector<int> twoSum(vector<int> &nums, int target) {
@@ -39,7 +39,8 @@ public:
             return [p1+1,p2+1]
   */
 
-  // #2 Add Two
+  // # 2 Add Two
+  // Time: O(max(len(l1), len(l2)+1)) or O(max(len(l1), len(l2)))
   ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
       ListNode res(0), *p = &res;
       int extra = 0;
@@ -59,12 +60,38 @@ public:
       return res.next;
   }
 
-  // #9 Palindrome Number
+  // # 9 Palindrome Number
   bool isPalindrome(int x) {
         
     }
 
-
+  // # 338 Count 1 bits
+  // Time: O(n) Space: O(n)
+  vector<int> countBits(int num) {
+      vector<int> res;
+      res.push_back(0);
+      int count = 0;
+      int target = 1;
+      for(int i = 1; i <= num; ++i){
+          res.push_back(1 + res[count]);
+          count++;
+          if (count == target){
+              target *= 2;
+              count = 0;
+          }
+      }
+      return res;
+  }
+  /* Awesome Verison
+  // Time: O(n) Space: O(n)
+  vector<int> countBits(int num) {
+      vector<int> res(nums+1, 0);
+      for(int i = 1; i <= num; ++i){
+          res[i] = res[i&(i-1)] +1;
+      }
+      return res;
+  }
+  */
 
 
 
