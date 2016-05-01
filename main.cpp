@@ -29,31 +29,46 @@ public:
         hash[nums[i]] = i;
     }
     return res;
+  };
+  /* Python Verison
+  def twoSum(self, nums, target):
+  # Version 1
+    for p1 in range(len(nums)):
+    for p2 in range(p1+1,len(nums)):
+        if nums[p2] == target - nums[p1]:
+            return [p1+1,p2+1]
+  */
+
+  // #2 Add Two
+  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+      ListNode res(0), *p = &res;
+      int extra = 0;
+      while(l1 || l2 || extra){
+          if (l1)
+              extra += l1->val;
+          if (l2)
+              extra += l2->val;
+          // remeber to delete
+          p->next = new ListNode(extra % 10);
+          
+          extra = extra/10 ? 1 : 0;
+          p = p -> next;
+          l1 = l1 ? l1->next : l1;
+          l2 = l2 ? l2->next : l2;
+      }
+      return res.next;
   }
+
+  // #9 Palindrome Number
+  bool isPalindrome(int x) {
+        
+    }
+
+
+
+
+
+
 };
 
-/* Python Verison
 
-def twoSum(self, nums, target):
-"""
-:type nums: List[int]
-:type target: int
-:rtype: List[int]
-
-"""
-# Version 1
-for p1 in range(len(nums)):
-for p2 in range(p1+1,len(nums)):
-    if nums[p2] == target - nums[p1]:
-        return [p1+1,p2+1]
-# Version 2
-nums.sort()
-for p1 in range(len(nums)):
-left = p1
-mid = len(nums[p1+1:]) // 2
-right = len(nums) - 1
-while nums[p1] + nums[mid] > target:
-    mid = len()
-*/
-}
-;
