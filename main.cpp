@@ -98,9 +98,9 @@ public:
         firstPath.push_back(p1);
         if(p1->val == p->val)
             break;
-        if (p->val < p1->val)
+        else if (p->val < p1->val)
             p1 = p1->left;
-        if (p->val > p1->val){
+        else if (p->val > p1->val){
             p1 = p1->right;
         }
 
@@ -109,9 +109,9 @@ public:
         secondPath.push_back(p2);
         if(p2->val == q->val)
             break;
-        if (q->val > p2->val)
+        else if (q->val > p2->val)
             p2 = p2->right;
-        if (q->val < p2->val)
+        else if (q->val < p2->val)
             p2 = p2->left;
     }
 
