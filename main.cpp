@@ -87,6 +87,44 @@ public:
         }
         return res;
     }
+    // # 235
+    // have one bug for p1
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    vector<TreeNode*> firstPath;
+    vector<TreeNode*> secondPath;
+    TreeNode *p1 = root;
+    TreeNode *p2 = root;
+    while(p1){
+        firstPath.push_back(p1);
+        if(p1->val == p->val)
+            break;
+        if (p->val < p1->val)
+            p1 = p1->left;
+        if (p->val > p1->val){
+            p1 = p1->right;
+        }
+
+    }
+    while(p2){
+        secondPath.push_back(p2);
+        if(p2->val == q->val)
+            break;
+        if (q->val > p2->val)
+            p2 = p2->right;
+        if (q->val < p2->val)
+            p2 = p2->left;
+    }
+
+    for(int index2 = secondPath.size()-1; index2 >= 0; index2--){
+        for(int index1 = firstPath.size()-1; index1 >= 0; index1--){
+            if (firstPath[index1] == secondPath[index2]){
+                return firstPath[index1];
+            }
+        }
+
+    }
+    return nullptr;
+}
 
     // # 338 Count 1 bits
     // Time: O(n) Space: O(n)
