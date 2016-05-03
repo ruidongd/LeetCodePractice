@@ -75,7 +75,20 @@ public:
         }
     return res;
     }
-
+    // # 202 Happy Number
+    bool isHappy(int n) {
+        int count = 100;
+        while(count){
+            int sum = 0;
+            while(n){
+                sum += pow(n % 10,2);
+                n /= 10;
+            };
+            n = sum;
+            count--;
+        }
+        return n == 1;
+    }
     // # 206 Reverse Linked List
     ListNode* reverseList(ListNode* head) {
         ListNode * res = nullptr;
