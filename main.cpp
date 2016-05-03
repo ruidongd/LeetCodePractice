@@ -193,14 +193,18 @@ public:
         */
     // # 342 Power of Four
     bool isPowerOfFour(int num) {
-        while(num != 1){
-            if (num % 4 == 0)
+        while(num != 1)
+            if(num && num % 4 == 0)
                 num /= 4;
             else
                 return false;
-        }
         return true;
     }
+
+
+
+
+
 
 
 };
