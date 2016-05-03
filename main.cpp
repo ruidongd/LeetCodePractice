@@ -6,15 +6,14 @@ Each question would have one or more solutions with Python or C++.
 
 The main solution is based on C++ and I will add the solutions with other
 languages as comment.
-
 */
+
 using namespcae std;
 class Solution {
 
 public:
-  // # 1 Two Sum
-
-  // O(n), using hash table with for loop
+    // # 1 Two Sum
+    // O(n), using hash table with for loop
     vector<int> twoSum(vector<int> &nums, int target) {
     // code here
         unordered_map<int, int> hash;
@@ -31,18 +30,18 @@ public:
         }
         return res;
     }
-  /* Python Verison
-  def twoSum(self, nums, target):
-  # Version 1
+    /* Python Verison
+    def twoSum(self, nums, target):
+    # Version 1
     for p1 in range(len(nums)):
     for p2 in range(p1+1,len(nums)):
         if nums[p2] == target - nums[p1]:
             return [p1+1,p2+1]
-  */
+    */
 
-  // # 2 Add Two
-  // Time: O(max(len(l1), len(l2)+1)) or O(max(len(l1), len(l2)))
-  // If the sum of the last val of l1 and l2 is greater than or equal to 10
+    // # 2 Add Two
+    // Time: O(max(len(l1), len(l2)+1)) or O(max(len(l1), len(l2)))
+    // If the sum of the last val of l1 and l2 is greater than or equal to 10
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         ListNode res(0), *p = &res;
         int extra = 0;
@@ -62,20 +61,12 @@ public:
         return res.next;
     }
 
-  // # 9 Palindrome Number
+    // UnSolved
+    // # 9 Palindrome Number
     bool isPalindrome(int x) {
     }
 
-  /* Awesome Verison
-  // Time: O(n) Space: O(n)
-  vector<int> countBits(int num) {
-      vector<int> res(nums+1, 0);
-      for(int i = 1; i <= num; ++i){
-          res[i] = res[i&(i-1)] +1;
-      }
-      return res;
-  }
-  */
+
     // # 171 Excel Sheet Column Number
     int titleToNumber(string s) {
         int res = 0;
@@ -96,7 +87,7 @@ public:
         }
         return res;
     }
-    
+
     // # 338 Count 1 bits
     // Time: O(n) Space: O(n)
       vector<int> countBits(int num) {
@@ -114,7 +105,16 @@ public:
           }
           return res;
       }
-
+        /* Awesome Verison
+        // Time: O(n) Space: O(n)
+        vector<int> countBits(int num) {
+          vector<int> res(nums+1, 0);
+          for(int i = 1; i <= num; ++i){
+              res[i] = res[i&(i-1)] +1;
+          }
+          return res;
+        }
+        */
 
 
 };
