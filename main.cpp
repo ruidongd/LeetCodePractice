@@ -66,23 +66,6 @@ public:
     bool isPalindrome(int x) {
     }
 
-  // # 338 Count 1 bits
-  // Time: O(n) Space: O(n)
-    vector<int> countBits(int num) {
-        vector<int> res;
-        res.push_back(0);
-        int count = 0;
-        int target = 1;
-        for(int i = 1; i <= num; ++i){
-            res.push_back(1 + res[count]);
-            count++;
-            if (count == target){
-                target *= 2;
-                count = 0;
-            }
-        }
-        return res;
-    }
   /* Awesome Verison
   // Time: O(n) Space: O(n)
   vector<int> countBits(int num) {
@@ -93,7 +76,7 @@ public:
       return res;
   }
   */
-  // # 171 Excel Sheet Column Number
+    // # 171 Excel Sheet Column Number
     int titleToNumber(string s) {
         int res = 0;
         for (int index = 0; index >= 0; index-- ){
@@ -101,6 +84,36 @@ public:
         }
     return res;
     }
+
+    // # 206 Reverse Linked List
+    ListNode* reverseList(ListNode* head) {
+        ListNode * res = nullptr;
+        while(head){
+            ListNode* p = head;
+            head = head->next;
+            p->next = res;
+            res = p;
+        }
+        return res;
+    }
+    
+    // # 338 Count 1 bits
+    // Time: O(n) Space: O(n)
+      vector<int> countBits(int num) {
+          vector<int> res;
+          res.push_back(0);
+          int count = 0;
+          int target = 1;
+          for(int i = 1; i <= num; ++i){
+              res.push_back(1 + res[count]);
+              count++;
+              if (count == target){
+                  target *= 2;
+                  count = 0;
+              }
+          }
+          return res;
+      }
 
 
 
