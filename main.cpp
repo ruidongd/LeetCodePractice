@@ -125,6 +125,30 @@ public:
     }
     return nullptr;
 }
+    // # 263 Ugly Number
+    bool isUgly(int num) {
+        if(num <= 0)
+            return false;
+        else{
+            while(num % 2 == 0)
+            num = num / 2;
+            while(num % 3 == 0)
+                num = num / 3;
+            while(num % 5 == 0)
+                num = num / 5;
+            return num == 1;
+        }
+    }
+    // Awesome Verison
+    /*
+    4 is double of 2 so it is more effiective to solve this problem
+    bool isUgly(int num) {
+        for (int i=2; i<6 && num>0; i++)
+            while (num % i == 0)
+                num /= i;
+        return num == 1;
+    }
+    */
 
     // # 338 Count 1 bits
     // Time: O(n) Space: O(n)
