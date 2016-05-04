@@ -66,7 +66,33 @@ public:
     bool isPalindrome(int x) {
     }
 
-
+    // # 21 Merge Two Sorted Lists
+    // Time complexcity: O(len(l1) + len(l2)) = O(n)
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* res = new ListNode(0);
+        ListNode* p = res;
+        while(l1 || l2){
+            if(l1 && l2){
+                p->next = (l1->val <= l2->val) ? l1 : l2;
+                if(p->next == l1)
+                    l1 = l1->next;
+                else
+                    l2 = l2->next;
+            }
+            else{
+                if (l1){
+                p->next = l1;
+                l1 = l1->next;
+                }
+                else{
+                    p->next = l2;
+                    l2 = l2->next;
+                }
+            }
+            p = p->next;
+        }
+        return res->next;
+    }
     // # 171 Excel Sheet Column Number
     int titleToNumber(string s) {
         int res = 0;
