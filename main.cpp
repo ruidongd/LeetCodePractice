@@ -93,6 +93,21 @@ public:
         }
         return res->next;
     }
+    // # 141 Linked List Cycle
+    bool hasCycle(ListNode *head) {
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(slow){
+            slow = slow->next;
+            if(fast->next && fast->next->next)
+                fast = fast->next->next;
+            else
+                return false;
+            if(fast == slow)
+                return true;
+        }
+        return false;
+    }
     // # 171 Excel Sheet Column Number
     int titleToNumber(string s) {
         int res = 0;
