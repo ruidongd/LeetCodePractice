@@ -110,19 +110,33 @@ public:
             res += pow(26,index) * (s[s.length()-index-1] - 'A' +1);
         }
     return res;
-=======
+    
   // # 9 Palindrome Number
   bool isPalindrome(int x) {}
+  // # 110 Balanced Tree
+    bool isBalanced(TreeNode* root) {
+    if(root){
+        if(abs(getHeight(root->left) - getHeight(root->right)) <= 1)
+            return true && isBalanced(root->left) && isBalanced(root->right);
+        else
+            return false;
+    }
+    return true;
+    }
+    int getHeight(TreeNode* root){
+        if(root)
+            return (1 + max(getHeight(root->left), getHeight(root->right)));
+        return -1;
+    }
 
   // # 171 Excel Sheet Column Number
-  int titleToNumber(string s) {
-    int res = 0;
-    for (int index = 0; index >= 0; index--) {
-      res += pow(26, index) * (s[s.length() - index - 1] - 'A' + 1);
->>>>>>> origin/master
+    int titleToNumber(string s) {
+        int res = 0;
+        for (int index = 0; index >= 0; index--) {
+          res += pow(26, index) * (s[s.length() - index - 1] - 'A' + 1);
+        }
+        return res;
     }
-    return res;
-  }
   // # 202 Happy Number
   bool isHappy(int n) {
     int count = 100;
@@ -246,4 +260,12 @@ public:
         return false;
     return true;
   }
+  /* Awesome Version
+  bool isPowerOfFour(int num){
+    if(num>0 && num&(num-1) && (num-1)%3 == 0)
+        return true;
+    return false;
+  }
+}
+  */
 };
