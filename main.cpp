@@ -12,23 +12,22 @@ using namespcae std;
 class Solution {
 
 public:
-  // # 1 Two Sum
-  // O(n), using hash table with for loop
-  vector<int> twoSum(vector<int> &nums, int target) {
-    // code here
-    unordered_map<int, int> hash;
-    vector<int> res;
-    for (int i = 0; i < nums.size(); i++) {
-      int toFind = target - nums[i];
-      if (hash.find(toFind) != hash.end()) {
-        res.push_back(hash[toFind]);
-        res.push_back(i);
+    // # 1 Two Sum
+    // O(n), using hash table with for loop
+    vector<int> twoSum(vector<int> &nums, int target) {
+        unordered_map<int, int> hash;
+        vector<int> res;
+        for (int i = 0; i < nums.size(); i++) {
+            int toFind = target - nums[i];
+            if (hash.find(toFind) != hash.end()) {
+                res.push_back(hash[toFind]);
+                res.push_back(i);
+                return res;
+            } else
+                hash[nums[i]] = i;
+        }
         return res;
-      } else
-        hash[nums[i]] = i;
     }
-    return res;
-  }
   /* Python Verison
   def twoSum(self, nums, target):
   # Version 1
@@ -41,26 +40,25 @@ public:
   // # 2 Add Two
   // Time: O(max(len(l1), len(l2)+1)) or O(max(len(l1), len(l2)))
   // If the sum of the last val of l1 and l2 is greater than or equal to 10
-  ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-    ListNode res(0), *p = &res;
-    int extra = 0;
-    while (l1 || l2 || extra) {
-      if (l1)
-        extra += l1->val;
-      if (l2)
-        extra += l2->val;
-      // remeber to delete
-      p->next = new ListNode(extra % 10);
-
-      extra = extra / 10 ? 1 : 0;
-      p = p->next;
-      l1 = l1 ? l1->next : l1;
-      l2 = l2 ? l2->next : l2;
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+        ListNode res(0), *p = &res;
+        int extra = 0;
+        while (l1 || l2 || extra) {
+            if (l1)
+                extra += l1->val;
+            if (l2)
+                extra += l2->val;
+                // remeber to delete
+            p->next = new ListNode(extra % 10);
+            extra = extra / 10 ? 1 : 0;
+            p = p->next;
+            l1 = l1 ? l1->next : l1;
+            l2 = l2 ? l2->next : l2;
+        }
+        return res.next;
     }
-    return res.next;
-  }
 
-<<<<<<< HEAD
+
     // # 21 Merge Two Sorted Lists
     // Time complexcity: O(len(l1) + len(l2)) = O(n)
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
@@ -88,6 +86,28 @@ public:
         }
         return res->next;
     }
+    // # 66 Plus One
+    vector<int> plusOne(vector<int>& digits) {
+        int index = digits.size() - 1;
+        while(digits[index] == 9 && index >= 0){
+            digits[index] = 0;
+            index--;
+        }
+        if(index >= 0){
+            digits[index] += 1;
+            return digits;
+        }
+        else{
+            vector<int> res;
+            res.push_back(1);
+            int i = 0;
+            while(i< digits.size()){
+                res.push_back(0);
+                i++;
+            }
+            return res;
+        }
+    }
     // # 141 Linked List Cycle
     bool hasCycle(ListNode *head) {
         ListNode* fast = head;
@@ -110,109 +130,83 @@ public:
             res += pow(26,index) * (s[s.length()-index-1] - 'A' +1);
         }
     return res;
-    
-  // # 9 Palindrome Number
-  bool isPalindrome(int x) {}
-  // # 110 Balanced Tree
-    bool isBalanced(TreeNode* root) {
-    if(root){
-        if(abs(getHeight(root->left) - getHeight(root->right)) <= 1)
-            return true && isBalanced(root->left) && isBalanced(root->right);
-        else
-            return false;
-    }
-    return true;
-    }
-    int getHeight(TreeNode* root){
-        if(root)
-            return (1 + max(getHeight(root->left), getHeight(root->right)));
-        return -1;
     }
 
-  // # 171 Excel Sheet Column Number
-    int titleToNumber(string s) {
-        int res = 0;
-        for (int index = 0; index >= 0; index--) {
-          res += pow(26, index) * (s[s.length() - index - 1] - 'A' + 1);
+    // # 202 Happy Number
+    bool isHappy(int n) {
+        int count = 100;
+        while (count) {
+            int sum = 0;
+            while (n) {
+                sum += pow(n % 10, 2);
+                n /= 10;
+            };
+            n = sum;
+            count--;
+        }
+        return n == 1;
+    }
+
+  // # 206 Reverse Linked List
+    ListNode *reverseList(ListNode *head) {
+        ListNode *res = nullptr;
+        while (head) {
+            ListNode *p = head;
+            head = head->next;
+            p->next = res;
+            res = p;
         }
         return res;
     }
-  // # 202 Happy Number
-  bool isHappy(int n) {
-    int count = 100;
-    while (count) {
-      int sum = 0;
-      while (n) {
-        sum += pow(n % 10, 2);
-        n /= 10;
-      };
-      n = sum;
-      count--;
-    }
-    return n == 1;
-  }
-
-  // # 206 Reverse Linked List
-  ListNode *reverseList(ListNode *head) {
-    ListNode *res = nullptr;
-    while (head) {
-      ListNode *p = head;
-      head = head->next;
-      p->next = res;
-      res = p;
-    }
-    return res;
-  }
-  // # 235
-  // have one bug for p1
-  TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
-    vector<TreeNode *> firstPath;
-    vector<TreeNode *> secondPath;
-    TreeNode *p1 = root;
-    TreeNode *p2 = root;
-    while (p1) {
-      firstPath.push_back(p1);
-      if (p1->val == p->val)
-        break;
-      else if (p->val < p1->val)
-        p1 = p1->left;
-      else if (p->val > p1->val) {
-        p1 = p1->right;
-      }
-    }
-    while (p2) {
-      secondPath.push_back(p2);
-      if (p2->val == q->val)
-        break;
-      else if (q->val > p2->val)
-        p2 = p2->right;
-      else if (q->val < p2->val)
-        p2 = p2->left;
-    }
-
-    for (int index2 = secondPath.size() - 1; index2 >= 0; index2--) {
-      for (int index1 = firstPath.size() - 1; index1 >= 0; index1--) {
-        if (firstPath[index1] == secondPath[index2]) {
-          return firstPath[index1];
+    // # 235 Lowest Common Ancestor
+    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
+        vector<TreeNode *> firstPath;
+        vector<TreeNode *> secondPath;
+        TreeNode *p1 = root;
+        TreeNode *p2 = root;
+        while (p1) {
+            firstPath.push_back(p1);
+            if (p1->val == p->val)
+                break;
+            else if (p->val < p1->val)
+                p1 = p1->left;
+            else if (p->val > p1->val) {
+                p1 = p1->right;
+            }
         }
-      }
-    }
+        while (p2) {
+            secondPath.push_back(p2);
+            if (p2->val == q->val)
+                break;
+            else if (q->val > p2->val)
+                p2 = p2->right;
+            else if (q->val < p2->val)
+                p2 = p2->left;
+        }
+
+        for (int index2 = secondPath.size() - 1; index2 >= 0; index2--) {
+            for (int index1 = firstPath.size() - 1; index1 >= 0; index1--) {
+                if (firstPath[index1] == secondPath[index2]) {
+                    return firstPath[index1];
+                }
+            }
+        }
     return nullptr;
-  }
-  // # 263 Ugly Number
-  bool isUgly(int num) {
-    if (num <= 0)
-      return false;
-    else {
-      while (num % 2 == 0)
-        num = num / 2;
-      while (num % 3 == 0)
-        num = num / 3;
-      while (num % 5 == 0)
-        num = num / 5;
-      return num == 1;
     }
-  }
+    // # 263 Ugly Number
+    bool isUgly(int num) {
+        if (num <= 0)
+            return false;
+        else {
+            while (num % 2 == 0)
+                num = num / 2;
+            while (num % 3 == 0)
+                num = num / 3;
+            while (num % 5 == 0)
+                num = num / 5;
+            return num == 1;
+        }
+    }
   // Awesome Verison
   /*
   4 is double of 2 so it is more effiective to solve this problem
@@ -232,12 +226,12 @@ public:
     int count = 0;
     int target = 1;
     for (int i = 1; i <= num; ++i) {
-      res.push_back(1 + res[count]);
-      count++;
-      if (count == target) {
-        target *= 2;
-        count = 0;
-      }
+        res.push_back(1 + res[count]);
+        count++;
+        if (count == target) {
+            target *= 2;
+            count = 0;
+        }
     }
     return res;
   }
@@ -252,13 +246,14 @@ public:
   }
   */
   // # 342 Power of Four
-  bool isPowerOfFour(int num) {
-    while (num != 1)
-      if (num && num % 4 == 0)
-        num /= 4;
-      else
-        return false;
-    return true;
+    bool isPowerOfFour(int num) {
+        while (num != 1){
+            if (num && num % 4 == 0)
+                num /= 4;
+            else
+                return false;
+        }
+        return true;
   }
   /* Awesome Version
   bool isPowerOfFour(int num){
