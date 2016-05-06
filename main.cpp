@@ -218,23 +218,23 @@ public:
   }
   */
 
-  // # 338 Count 1 bits
-  // Time: O(n) Space: O(n)
-  vector<int> countBits(int num) {
-    vector<int> res;
-    res.push_back(0);
-    int count = 0;
-    int target = 1;
-    for (int i = 1; i <= num; ++i) {
-        res.push_back(1 + res[count]);
-        count++;
-        if (count == target) {
-            target *= 2;
-            count = 0;
+    // # 338 Count 1 bits
+    // Time: O(n) Space: O(n)
+    vector<int> countBits(int num) {
+        vector<int> res;
+        res.push_back(0);
+        int count = 0;
+        int target = 1;
+        for (int i = 1; i <= num; ++i) {
+            res.push_back(1 + res[count]);
+            count++;
+            if (count == target) {
+                target *= 2;
+                count = 0;
+            }
         }
+        return res;
     }
-    return res;
-  }
   /* Awesome Verison
   // Time: O(n) Space: O(n)
   vector<int> countBits(int num) {
