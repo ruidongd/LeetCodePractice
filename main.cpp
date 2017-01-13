@@ -86,6 +86,47 @@ public:
         }
         return res->next;
     }
+
+    // # 26 Remove Duplicates from Sorted Array
+    int removeDuplicates(vector<int>& nums)
+    {
+        vector<int>::iterator it = nums.begin();
+        int res = nums.size();
+        while(it != nums.end())
+        {
+            int dup = 0;
+            vector<int>::iterator cur = it;
+            while(cur+1 != nums.end() && *cur == *(cur+1))
+            {
+                dup++;
+                nums.erase(cur);
+            }
+            res -= dup;
+            it = cur;
+            it++;
+        }
+        return res;
+    }
+
+    // # 27 Remove elements
+    int removeElement(vector<int>& nums, int val)
+    {
+        vector<int>::iterator it = nums.begin();
+        int len = nums.size();
+        while(it < nums.end())
+        {
+            cout << *it << endl;
+            if(*it == val)
+            {
+                nums.erase(it);
+                --len;
+            }
+            else
+                it++;
+        }
+        return len;
+    }
+
     // # 66 Plus One
     vector<int> plusOne(vector<int>& digits) {
         int index = digits.size() - 1;
@@ -108,6 +149,17 @@ public:
             return res;
         }
     }
+
+    // # 111 Minimum Depth of Binary Tree
+    int minDepth(TreeNode* root){
+        int level = 0;
+
+    }
+    bool hasTwoChildren(TreeNode* root)
+    {
+        return (root->left)&&(root->right);
+    }
+
     // # 141 Linked List Cycle
     bool hasCycle(ListNode *head) {
         ListNode* fast = head;
@@ -122,6 +174,21 @@ public:
                 return true;
         }
         return false;
+    }
+    // # 167 Two Sum II - Input array is sorted
+    vector<int> twoSum(vector<int>&nums, int target){
+        unordered_map<int, int> hash;
+        vector<int> res;
+        for (int i = 0; i < numbers.size(); i++) {
+            int toFind = target - numbers[i];
+            if (hash.find(toFind) != hash.end()) {
+                res.push_back(hash[toFind]+1);
+                res.push_back(i+1);
+                return res;
+            } else
+                hash[numbers[i]] = i;
+        }
+        return res;
     }
     // # 171 Excel Sheet Column Number
     int titleToNumber(string s) {
@@ -264,3 +331,143 @@ public:
 }
   */
 };
+
+// # 232  Implement Queue using Stacks
+class Queue {
+private:
+    vector<int> stack;
+public:
+    // Push element x to the back of queue.
+    void push(int x) {
+        stack.push_back(x);
+    }
+
+    // Removes the element from in front of queue.
+    void pop(void) {
+        stack.erase(stack.begin());
+    }
+
+    // Get the front element.
+    int peek(void) {
+        return stack[0];
+    }
+
+    // Return whether the queue is empty.
+    bool empty(void) {
+        return stack.empty();
+    }
+};
+
+// 50. Pow(x, n)
+// Implement pow(x, n).
+/*
+double myPow(double x, int n) {
+
+    }
+*/
+// 413. Arithmetic Slices
+/*
+A sequence of number is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.
+
+For example, these are arithmetic sequence:
+1, 3, 5, 7, 9
+7, 7, 7, 7
+3, -1, -5, -9
+
+The following sequence is not arithmetic.
+1, 1, 2, 5, 7
+
+A zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q) such that 0 <= P < Q < N.
+
+A slice (P, Q) of array A is called arithmetic if the sequence:
+A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 < Q.
+
+The function should return the number of arithmetic slices in the array A.
+
+A = [1, 2, 3, 4]
+
+return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
+
+int numberOfArithmeticSlices(vector<int>& A) {
+
+}
+
+*/
+// 406. Queue Reconstruction by Height
+/*
+Suppose you have a random list of people standing in a queue. Each person is described by a pair of integers (h, k), where h is the height of the person and k is the number of people in front of this person who have a height greater than or equal to h. Write an algorithm to reconstruct the queue.
+
+Input:
+[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
+
+Output:
+[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]
+
+vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people) {
+
+}
+
+*/
+
+
+// 38. Count and Say
+/*
+The count-and-say sequence is the sequence of integers beginning as follows:
+1, 11, 21, 1211, 111221, ...
+
+1 is read off as "one 1" or 11.
+11 is read off as "two 1s" or 21.
+21 is read off as "one 2, then one 1" or 1211.
+Given an integer n, generate the nth sequence.
+
+string countAndSay(int n) {
+
+}
+
+*/
+// 112. Path Sum
+/*
+Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
+
+For example:
+            5
+            / \
+           4   8
+          /   / \
+         11  13  4
+        /  \      \
+       7    2      1
+Given the below binary tree and sum = 22,
+*/
+
+// 257. Binary Tree Paths
+// Given a binary tree, return all root-to-leaf paths.
+
+
+// 412. Fizz Buzz
+/*
+Write a program that outputs the string representation of numbers from 1 to n.
+
+But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.
+
+n = 15,
+
+Return:
+[
+    "1",
+    "2",
+    "Fizz",
+    "4",
+    "Buzz",
+    "Fizz",
+    "7",
+    "8",
+    "Fizz",
+    "Buzz",
+    "11",
+    "Fizz",
+    "13",
+    "14",
+    "FizzBuzz"
+]
+*/
